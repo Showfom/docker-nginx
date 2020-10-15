@@ -1,4 +1,6 @@
-#!/usr/bin/env sh -eu
+#!/usr/bin/env sh
+
+set -eu
 
 # Proceed if link exists
 docker-nginx-update.sh || [ 100 -eq "$?" ]
