@@ -70,7 +70,7 @@ RUN set -eux; \
     apk add --no-cache $runDeps; \
     apk del .build-deps
 
-COPY docker-nginx-*.sh docker-entrypoint.sh /usr/local/bin/
+COPY docker-nginx-*.sh /usr/local/bin/
 COPY root /
 
 ENTRYPOINT ["/init"]
