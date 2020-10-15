@@ -1,1 +1,1 @@
-/var/cache/nginx true www-data:root,33:0 600 700 
+/var/cache/nginx false www-data:root,33:0 600 700 
