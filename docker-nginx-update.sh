@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-set -eux
+set -eu
 
 _origin="/etc/nginx"
 _link="/etc/nginx"
