@@ -1,0 +1,6 @@
+#!/usr/bin/env sh -eu
+
+# Proceed if link exists
+docker-nginx-update.sh || [ 100 -eq "$?" ]
+
+exec nginx -g "daemon off;"
