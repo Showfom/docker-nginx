@@ -3,10 +3,7 @@ FROM nginx
 ARG NGX_BROTLI_VERSION=v1.0.0rc
 ARG GEOIP2_MODULE_VERSION=3.3
 
-ADD https://github.com/just-containers/s6-overlay/releases/download/v2.1.0.0/s6-overlay-amd64.tar.gz /tmp/
-RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C / --exclude='./bin' && tar xzf /tmp/s6-overlay-amd64.tar.gz -C /usr ./bin
-
-RUN set -eux; \
+RUN set -ex; \
     # delete the user xfs (uid 33) for the user www-data (the same uid 33 in Debian) that will be created soon
     deluser xfs; \
     # delete the existing www-data group (uid 82)
@@ -71,6 +68,9 @@ RUN set -eux; \
     apk del .build-deps
 
 COPY docker-nginx-*.sh /usr/local/bin/
+ADD https://github.com/just-containers/s6-overlay/releases/download/v2.1.0.0/s6-overlay-amd64.tar.gz /tmp/
+RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C / --exclude='./bin' && tar xzf /tmp/s6-overlay-amd64.tar.gz -C /usr ./bin
 COPY root /
 
 ENTRYPOINT ["/init"]
+CMD ["nginx", "-g", "daemon off;"]
