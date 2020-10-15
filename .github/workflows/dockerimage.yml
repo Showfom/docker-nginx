@@ -18,7 +18,7 @@ jobs:
       - name: Build image
         run: docker build . --tag "$DOCKER_IMAGE_REPO:latest"
       - name: Test
-        run: docker run --rm "$DOCKER_IMAGE_REPO:latest" /usr/bin/env sh -ce "nginx -V; nginx -t"
+        run: docker run --rm "$DOCKER_IMAGE_REPO:latest" sh -ce "nginx -V; nginx -t"
       - name: Tag
         run: docker tag "$DOCKER_IMAGE_REPO:latest" "$DOCKER_IMAGE_REPO:dev"
       - name: Push
