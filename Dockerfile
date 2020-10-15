@@ -71,6 +71,6 @@ RUN set -eux; \
     apk del .build-deps
 
 COPY docker-nginx-*.sh /usr/local/bin/
-COPY root/etc /etc/
+COPY root /
 
 ENTRYPOINT ["/init"]
