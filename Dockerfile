@@ -68,9 +68,7 @@ RUN set -eux; \
     apk del .build-deps
 
 COPY docker-nginx-*.sh /usr/local/bin/
-ADD https://github.com/just-containers/s6-overlay/releases/download/v2.1.0.0/s6-overlay-amd64.tar.gz /tmp/
-RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C / --exclude='./bin' && tar xzf /tmp/s6-overlay-amd64.tar.gz -C /usr ./bin
+RUN curl -fsSL https://github.com/just-containers/s6-overlay/releases/download/v2.1.0.0/s6-overlay-amd64.tar.gz | tar xzf - -C /
 COPY root /
 
 ENTRYPOINT ["/init"]
-CMD ["nginx", "-g", "daemon off;"]
